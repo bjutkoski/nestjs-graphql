@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Author } from './author.interface';
-import { CreateAuthorDTO, UpdateAuthorDTO } from './dto/create-author.dto';
+import { CreateAuthorDTO } from './dto/create-author.dto';
+import { UpdateAuthorDTO } from './dto/update-author.dto';
 
 @Injectable()
 export class AuthorService {

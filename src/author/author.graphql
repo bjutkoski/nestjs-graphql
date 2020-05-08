@@ -7,6 +7,19 @@ type Author {
   _id: ID!
   firstName: String
   lastName: String
+  posts: [Post]
+  address: Address
+}
+
+type Post {
+  _id: ID!
+  title: String
+}
+
+type Address {
+  zipCode: String
+  phone: String
+  city: String
 }
 
 type Mutation {

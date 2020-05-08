@@ -1,4 +1,12 @@
-import { Resolver, Query, Args, Mutation, Root } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Args,
+  Mutation,
+  Root,
+  Parent,
+  ResolveField,
+} from '@nestjs/graphql';
 import { AuthorService } from './author.service';
 import { Author } from './author.interface';
 import { CreateAuthorDTO } from './dto/create-author.dto';
@@ -34,5 +42,17 @@ export class AuthorResolver {
   @Mutation()
   async deleteAuthor(@Root() root, @Args('id') id): Promise<string> {
     return this.authorService.delete(id);
+  }
+
+  @ResolveField()
+  posts(@Parent() author) {
+    const { _id } = author;
+    return [{ _id: '1', title: 'test post' }];
+  }
+
+  @ResolveField()
+  address(@Parent() author) {
+    const { _id } = author;
+    return { _id: '1', zipCode: '123123', phone: '123123', city: 'My City' };
   }
 }
